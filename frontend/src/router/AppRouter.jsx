@@ -9,11 +9,12 @@ import PageLoader from "../components/common/PageLoader.jsx";
 const Home = lazy(() => import("../pages/Home.jsx"));
 const Profile = lazy(() => import("../pages/Profile.jsx"));
 const Persona = lazy(() => import("../pages/Persona.jsx"));
-const Event = lazy(() => import("../pages/Event.jsx"));
+const Event = lazy(() => import("../pages/Agenda.jsx"));
 const Dimensi = lazy(() => import("../pages/Dimension.jsx"));
 const Login = lazy(() => import("../pages/Login.jsx"));
 const Sejarah = lazy(() => import("../pages/Sejarah.jsx"));
 const Katalog = lazy(() => import("../pages/Katalog.jsx"));
+const FasilitasPublik = lazy(() => import("../pages/FasilitasPublik.jsx"));
 const SmartGovernance = lazy(() => import("../pages/explore-dimensions/SmartGovernance.jsx"));
 const SmartLiving = lazy(() => import("../pages/explore-dimensions/SmartLiving.jsx"));
 const SmartSociety = lazy(() => import("../pages/explore-dimensions/SmartSociety.jsx"));
@@ -38,6 +39,7 @@ function AppRouter() {
           <Route path="/event" element={<Event />} />
           <Route path="/dimensi" element={<Dimensi />} />
           <Route path="/katalog" element={<Katalog />} />
+          <Route path="/fasilitaspublik" element={<FasilitasPublik />} />
           <Route path="/SmartGovernance" element={<SmartGovernance />} />
           <Route path="/publication" element={<Publication />} />
           <Route path="/SmartLiving" element={<SmartLiving />} />

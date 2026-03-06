@@ -6,13 +6,13 @@
 
 .event-page {
     min-height: 100vh;
-    background: #ffffff; 
+    background: #F5F5F5; 
 }
 
 /* === Hero Section === */
 .event-hero-section {
     background: var(--primary-200);
-    color: white;
+    color: #F5F5F5;
     text-align: center;
     padding: 100px 20px 60px;
     position: relative;
@@ -70,7 +70,7 @@
 }
 
 .calendar-wrapper {
-    background: white;
+    background: #F5F5F5;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); 
     overflow: hidden;

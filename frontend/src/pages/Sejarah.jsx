@@ -5,6 +5,11 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
+/* IMPORT GAMBAR DARI ASSETS */
+import websiteImg from "../assets/images/website.svg";
+import smartImg from "../assets/images/smart.svg";
+import lineImg from "../assets/images/line.svg";
+
 export default function Sejarah() {
   return (
     <main className="sejarah-main">
@@ -12,7 +17,7 @@ export default function Sejarah() {
       {/* HERO */}
       <div className="sejarah-hero">
         <img
-          src="/gambar/website.svg"
+          src={websiteImg}
           alt="Sejarah"
           className="sejarah-center-image"
         />
@@ -37,7 +42,7 @@ export default function Sejarah() {
 
         <div className="intro-content">
           <div className="sejarah-image">
-            <img src="/gambar/smart.svg" alt="Sejarah Smart City Kabupaten Tangerang" />
+            <img src={smartImg} alt="Sejarah Smart City Kabupaten Tangerang" />
           </div>
 
           <p>
@@ -80,92 +85,91 @@ export default function Sejarah() {
         </div>
       </section>
 
-        {/* TIMELINE */}
+      {/* TIMELINE */}
+      <section className="roadmap-section">
+        <div className="roadmap-wrapper">
+          <h2 className="roadmap-title">
+            Tangerang Smart City dari tahun ke tahun
+          </h2>
 
-        <section className="roadmap-section">
-          <div className="roadmap-wrapper">
-             <h2 className="roadmap-title">
-                  Tangerang Smart City dari tahun ke tahun
-                </h2>
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={30}
+            slidesPerView={3}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            className="roadmap-swiper"
+          >
+            {[
+              {
+                year: "2022",
+                image: smartImg,
+                title: "Perencanaan",
+                desc: "Fase Perencanaan Studi kelayakan dan penyusunan masterplan SmartCity"
+              },
+              {
+                year: "2023",
+                image: smartImg,
+                title: "Pengembangan",
+                desc: "Fase Pengembangan Pengembangan platform digital dan sistem informasi"
+              },
+              {
+                year: "2024",
+                image: smartImg,
+                title: "Implementasi",
+                desc: "Fase Implementasi Peluncuran aplikasi layanan publik dan sistem monitoring kota"
+              },
+              {
+                year: "2025",
+                image: smartImg,
+                title: "Integrasi",
+                desc: "Fase Integrasi Integrasi penuh semua dimensi SmartCity dan evaluasi komprehensif"
+              },
+              {
+                year: "2026",
+                image: smartImg,
+                title: "Optimalisasi",
+                desc: "Fase Optimalisasi Studi kelayakan dan penyusunan masterplan SmartCity"
+              }
+            ].map((item, i) => (
+              <SwiperSlide key={i}>
+                <div className="roadmap-item">
 
-                <Swiper
-                  modules={[Navigation]}
-                  spaceBetween={30}
-                  slidesPerView={3}
-                  navigation={{
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                  }}
-                  breakpoints={{
-                    0: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
-                  }}
-                  className="roadmap-swiper"
-                >
-                  {[
-                    {
-                      year: "2022",
-                      image: "/gambar/smart.svg",
-                      title: "Perencanaan",
-                      desc: "Fase Perencanaan Studi kelayakan dan penyusunan masterplan SmartCity"
-                    },
-                    {
-                      year: "2023",
-                      image: "/gambar/smart.svg",
-                      title: "Pengembangan",
-                      desc: "Fase Pengembangan Pengembangan platform digital dan sistem informasi"
-                    },
-                    {
-                      year: "2024",
-                      image: "/gambar/smart.svg",
-                      title: "Implementasi",
-                      desc: "Fase Implementasi Peluncuran aplikasi layanan publik dan sistem monitoring kota"
-                    },
-                    {
-                      year: "2025",
-                      image: "/gambar/smart.svg",
-                      title: "Integrasi",
-                      desc: "Fase Integrasi Integrasi penuh semua dimensi SmartCity dan evaluasi komprehensif"
-                    },
-                    {
-                      year: "2026",
-                      image: "/gambar/smart.svg",
-                      title: "Optimalisasi",
-                      desc: "Fase Optimalisasi Studi kelayakan dan penyusunan masterplan SmartCity"
-                    }
-                  ].map((item, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="roadmap-item">
+                  <div className="roadmap-logo">
+                    <img src={lineImg} alt="timeline" />
+                  </div>
 
-                        <div className="roadmap-logo">
-                          <img src="/gambar/line.svg" alt="timeline" />
-                        </div>
+                  <div className="roadmap-card">
+                    <h3 className="roadmap-year">{item.year}</h3>
+                    <div className="year-line"></div>
 
-                        <div className="roadmap-card">
-                          <h3 className="roadmap-year">{item.year}</h3>
-                          <div className="year-line"></div>
+                    <div className="roadmap-image">
+                      <img src={item.image} alt={item.title} />
+                    </div>
 
-                          <div className="roadmap-image">
-                            <img src={item.image} alt={item.title} />
-                          </div>
+                    <h4>{item.title}</h4>
+                    <p>{item.desc}</p>
+                  </div>
 
-                          <h4>{item.title}</h4>
-                          <p>{item.desc}</p>
-                        </div>
-
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-
-                {/* BUTTON DI BAWAH KANAN */}
-                <div className="swiper-nav-right">
-                  <div className="swiper-button-prev"></div>
-                  <div className="swiper-button-next"></div>
                 </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <div className="swiper-nav-right">
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
           </div>
-        </section>
+        </div>
+      </section>
+
     </main>
   );
 }

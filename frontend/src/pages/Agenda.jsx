@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/pages/event_page.css';
+import '../styles/pages/agenda_page.css';
 import { apiEndpoints } from '../utils/helpers';
 
-const Event = () => {
-    const [events, setEvents] = useState([]);
+const Agenda = () => {
+    const [agendas, setAgendas] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
     const [imageLoaded, setImageLoaded] = useState({});
 
     useEffect(() => {
-        const fetchEvents = async () => {
+        const fetchAgendas = async () => {
             try {
                 const response = await apiEndpoints.events.getAllPublic();
-                setEvents(response.data.data);
+                setAgendas(response.data.data);
             } catch (err) {
-                setError('Failed to load events');
-                console.error('Error fetching events:', err);
+                setError('Failed to load agendas');
+                console.error('Error fetching agendas:', err);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchEvents();
+        fetchAgendas();
     }, []);
 
     const openPreview = (imageUrl) => {
@@ -35,8 +35,8 @@ const Event = () => {
         document.body.style.overflow = 'auto';
     };
 
-    const handleImageLoad = (eventId) => {
-        setImageLoaded(prev => ({ ...prev, [eventId]: true }));
+    const handleImageLoad = (agendaId) => {
+        setImageLoaded(prev => ({ ...prev, [agendaId]: true }));
     };
 
     useEffect(() => {
@@ -63,10 +63,11 @@ const Event = () => {
                         <h1>City of Event: Kalender Acara Kabupaten Tangerang</h1>
                     </div>
                 </section>
+
                 <section className="event-calendar-container">
                     <div className="loading-placeholder">
                         <div className="spinner"></div>
-                        <p>Memuat Acara...</p>
+                        <p>Memuat Agenda...</p>
                     </div>
                 </section>
             </div>
@@ -81,6 +82,7 @@ const Event = () => {
                         <h1>City of Event: Kalender Acara Kabupaten Tangerang</h1>
                     </div>
                 </section>
+
                 <section className="event-calendar-container">
                     <div className="error-message">
                         <p>{error}</p>
@@ -101,61 +103,58 @@ const Event = () => {
             <section className="event-calendar-container">
                 <h2 className="section-title">Kalender Resmi Acara Publik</h2>
 
-                {events.length === 0 ? (
+                {agendas.length === 0 ? (
                     <div className="no-events">
-                        <p>Tidak ada acara yang tersedia saat ini</p>
+                        <p>Tidak ada agenda yang tersedia saat ini</p>
                     </div>
                 ) : (
                     <div className="events-list">
-                        {events.map((event) => (
-                            <div key={event.id} className="calendar-wrapper">
-                                {event.imageUrl && (
+                        {agendas.map((agenda) => (
+                            <div key={agenda.id} className="calendar-wrapper">
+                                {agenda.imageUrl && (
                                     <>
-                                        {!imageLoaded[event.id] && (
+                                        {!imageLoaded[agenda.id] && (
                                             <div className="loading-placeholder">
                                                 <div className="spinner"></div>
                                                 <p>Memuat gambar...</p>
                                             </div>
                                         )}
+
                                         <img
-                                            src={event.imageUrl}
-                                            alt={`Kalender Acara ${event.year || ''}`}
-                                            className={`calendar-image ${imageLoaded[event.id] ? 'loaded' : ''}`}
+                                            src={agenda.imageUrl}
+                                            alt={`Kalender Agenda ${agenda.year || ''}`}
+                                            className={`calendar-image ${imageLoaded[agenda.id] ? 'loaded' : ''}`}
                                             loading="lazy"
-                                            onClick={() => openPreview(event.imageUrl)}
-                                            onLoad={() => handleImageLoad(event.id)}
+                                            onClick={() => openPreview(agenda.imageUrl)}
+                                            onLoad={() => handleImageLoad(agenda.id)}
                                         />
                                     </>
                                 )}
-                                <div className="download-info">
-                                </div>
                             </div>
                         ))}
                     </div>
                 )}
             </section>
 
-            {/* Image Preview Modal */}
             {previewImage && (
                 <div 
                     className="image-preview-modal active" 
                     onClick={closePreview}
                 >
                     <div className="preview-content" onClick={(e) => e.stopPropagation()}>
-                        <button 
-                            className="close-preview" 
+                        <button
+                            className="close-preview"
                             onClick={closePreview}
                             aria-label="Close preview"
                         >
-                            ×
+                            x
                         </button>
-                        <img 
-                            src={previewImage} 
-                            alt="Preview Kalender" 
-                            className="preview-image" 
+
+                        <img
+                            src={previewImage}
+                            alt="Preview Kalender"
+                            className="preview-image"
                         />
-                        <div className="preview-hint">
-                        </div>
                     </div>
                 </div>
             )}
@@ -163,4 +162,4 @@ const Event = () => {
     );
 };
 
-export default Event;
+export default Agenda;
