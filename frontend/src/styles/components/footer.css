@@ -2,7 +2,7 @@
    FOOTER MAIN
 ========================= */
 .footer {
-  background: #FFFFFF;
+  background: #F5F5F5;
   color: #0074BA;
   font-family: "Poppins", sans-serif;
   margin-top: 0;
@@ -164,7 +164,7 @@
   text-align: center;
   padding: 25px;
   font-size: 13px;
-  background: #FFFFFF;
+  background: #F5F5F5;
   color: #777;
 }
 
