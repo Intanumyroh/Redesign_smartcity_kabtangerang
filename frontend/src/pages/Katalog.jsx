@@ -3,6 +3,10 @@ import "../styles/pages/katalog_page.css";
 import { useLanguage } from "../utils/LanguageContext";
 
 import smartImg from "../assets/images/smart.svg";
+import logoImg from "../assets/images/kabtang.png";
+import petaImg from "../assets/images/peta.png";
+import digiImg from "../assets/images/digi.png";
+import mataImg from "../assets/images/dishub.png";
 import websiteImg from "../assets/images/website.svg";
 
 export default function KatalogSection() {
@@ -17,27 +21,27 @@ export default function KatalogSection() {
     },
     {
       title: "Tangerang Gemilang",
-      desc: "Layanan Cerdas untuk Masyarakat",
-      img: smartImg,
-      link: "https://example.com/tangerang-gemilang"
+      desc: language === "ID" ? "Layanan Cerdas untuk Masyarakat" : "Smart Services for Citizens",
+      img: logoImg,
+      link: "https://gemilang.tangerangkab.go.id/"
     },
     {
       title: "Mata Hub",
-      desc: "Smart Monitoring untuk Kabupaten Tangerang",
-      img: smartImg,
+      desc: language === "ID" ? "Smart Monitoring untuk Kabupaten Tangerang" : "Smart Monitoring for Tangerang Regency",
+      img: mataImg,
       link: "https://cctv-dishub.tangerangkab.go.id/cctv"
     },
     {
       title: "D'Naker Digi",
-      desc: "Digitalisasi Layanan Ketenagakerjaan",
-      img: smartImg,
+      desc: language === "ID" ? "Digitalisasi Layanan Ketenagakerjaan" : "Digitalization of Employment Services",
+      img: digiImg,
       link: "https://siapkerja.tangerangkab.go.id/home"
     },
     {
       title: "Geo Maps Kabupaten Tangerang",
-      desc: "Peta Geografis Kabupaten Tangerang",
-      img: smartImg,
-      link: "https://geoportal.tangerangkab.go.id/",
+      desc: language === "ID" ? "Peta Geografis Kabupaten Tangerang" : "Geographic Map of Tangerang Regency",
+      img: petaImg,
+      link: "https://geomaps.tangerangkab.go.id/catalogue/#/map/89",
       big: true
     }
   ];

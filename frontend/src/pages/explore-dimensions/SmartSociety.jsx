@@ -31,6 +31,7 @@ function SmartSociety() {
         try {
           const res = await apiEndpoints.inovasi.getAll();
           const raw = res.data;
+  
           let list = [];
           if (Array.isArray(raw)) {
             list = raw;
@@ -41,10 +42,15 @@ function SmartSociety() {
           } else if (raw && Array.isArray(raw.content)) {
             list = raw.content;
           }
-
+  
+          // 🔥 WAJIB: FILTER DI SINI
+          list = list.filter(item => item.dimensiId === "902aa703-6ca1-43aa-8203-91da409a0203");
+  
+          // Fetch image
           const listWithImages = await Promise.all(
             list.map(async (item) => {
               let imageUrl = `${getCleanBaseUrl(import.meta.env.VITE_API_BASE_URL)}/files/${item.imageName}`;
+  
               try {
                 if (item.id) {
                   const fileRes = await apiEndpoints.inovasi.getfile(item.id);
@@ -52,18 +58,21 @@ function SmartSociety() {
                   if (s3Url) imageUrl = s3Url;
                 }
               } catch (err) {
-                console.error(`Gagal mendapatkan url gambar untuk inovasi ${item.id}:`, err);
+                console.error(`Gagal gambar ${item.id}`, err);
               }
+  
               return { ...item, parsedImageUrl: imageUrl };
             })
           );
-
+  
           setInovasiData(listWithImages);
+  
         } catch (err) {
-          console.error('Error fetching inovasi:', err);
+          console.error("Error fetching inovasi:", err);
           setInovasiData([]);
         }
       };
+  
       fetchInovasi();
     }
   }, [selectedCategory]);
@@ -121,18 +130,11 @@ function SmartSociety() {
                 <span>Smart Governance</span>
               </div>
 
-              <div className="fitur-item" onClick={() => navigate("/SmartLiving")}>
+              <div className="fitur-item" onClick={() => navigate("/SmartBranding")}>
                 <div className="icon-circle">
-                  <img src={smartLiving} alt="" />
+                  <img src={smartBranding} alt="" />
                 </div>
-                <span>Smart Living</span>
-              </div>
-
-              <div className="fitur-item active">
-                <div className="icon-circle">
-                  <img src={smartSociety} alt="" />
-                </div>
-                <span>Smart Society</span>
+                <span>Smart Branding</span>
               </div>
 
               <div className="fitur-item" onClick={() => navigate("/SmartEconomy")}>
@@ -142,20 +144,26 @@ function SmartSociety() {
                 <span>Smart Economy</span>
               </div>
 
+              <div className="fitur-item active">
+                <div className="icon-circle">
+                  <img src={smartSociety} alt="" />
+                </div>
+                <span>Smart Society</span>
+              </div>
+
+              <div className="fitur-item" onClick={() => navigate("/SmartLiving")}>
+                <div className="icon-circle">
+                  <img src={smartLiving} alt="" />
+                </div>
+                <span>Smart Living</span>
+              </div>
+
               <div className="fitur-item" onClick={() => navigate("/SmartEnvironment")}>
                 <div className="icon-circle">
                   <img src={smartEnvironment} alt="" />
                 </div>
                 <span>Smart Environment</span>
               </div>
-
-              <div className="fitur-item" onClick={() => navigate("/SmartBranding")}>
-                <div className="icon-circle">
-                  <img src={smartBranding} alt="" />
-                </div>
-                <span>Smart Branding</span>
-              </div>
-
             </div>
 
             <div className="kunjungan-tab">
